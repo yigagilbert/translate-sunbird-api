@@ -3,34 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Translation Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>SunbirdAI Translation Page</title>
+    <link rel="icon" type="image/x-icon" href="./img/sunbirdAi.svg">
+    <style>
+        body {
+          background-image: url('./img/sunbirdAi.svg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: 98% 24%;
+        }
+        </style>
 </head>
-<body>
-    <h1>Simple Translation Tool</h1>
-    <form id="translationForm">
-        <label for="textToTranslate">Text to translate:</label><br>
-        <textarea id="textToTranslate" rows="4" cols="50"></textarea><br>
+<body> 
+    
+    <form class="flex-nowrap space-y-8" id="translationForm">
+        <h1 class="text-blue-600 text-center text-bold text-3xl font-mon0" >SunbirdAI Translation Tool</h1><br>
+       
 
-        <label for="sourceLang">Source Language:</label>
-        <input type="text" id="sourceLang" placeholder="e.g., eng,lug,ach,teo,lgg,nyn"><br>
+        <div class="space-y-1">
 
-        <label for="targetLang">Target Language:</label>
-        <input type="text" id="targetLang" placeholder="e.g., eng,lug,ach,teo,lgg,nyn"><br>
+            <label class="text-blue-600 text-center flex justify-center italic text-sm subpixel-antialiased" for="textToTranslate">Text to translate:</label><br>
 
-        <button type="button" onclick="translateText()">Translate</button>
+             <div class="flex justify-center ">
+
+                <textarea class="flex justify-center bg-blue-300 px-4 py-6 text-center rounded-lg shadow-2xl" id="textToTranslate" rows="4" cols="50"></textarea><br>
+
+            </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center space-x-4" >
+
+         <label class="text-blue-600 text-center text-bold text-lg " for="sourceLang">Source Language:
+            <input class="text-center rounded-lg shadow-lg italic" type="text" id="sourceLang" placeholder="e.g., eng,lug,ach,teo,lgg,nyn"><br>
+         </label>
+
+         <label class="text-blue-600 text-center text-bold text-lg" for="targetLang">Target Language:
+           <input class="text-center rounded-lg shadow-lg italic" type="text" id="targetLang" placeholder="e.g., eng,lug,ach,teo,lgg,nyn"><br>
+         </label>
+
+        </div>
+
+        <div class="flex justify-center">
+
+         <button class="flex text-sm px-2 py-3 bg-blue-600 text-white text-bold text-center bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 rounded-full shadow-md cursor-pointer w-32 place-content-center " type="button" onclick="translateText()">
+                Translate
+            </button>
+
+        </div>
     </form>
 
-    <h2>Translation Result:</h2>
-    <div id="translationResult"></div>
+    <div class="space-y-8"><br>
+
+        <h2 class="text-center text-blue-600 text-2xl ">Translation Result:</h2>
+        <div class="flex justify-center text-wrap text-center shadow-sm" id="translationResult"></div>
+
+    </div>
 
     <script>
         const translationUrl = 'https://api.sunbird.ai/tasks/nllb_translate';
-        const apiToken = 'your_api_token_here'; // Replace with your actual API token
+        const apiToken = ''; // Replace with your actual API token
 
         const requestHeaders = {
             "Authorization": `Bearer ${apiToken}`,
             "Content-Type": "application/json"
         };
+
+
 
         const getTranslation = async (text, sourceLang, targetLang) => {
             console.log(`sourceLang ${sourceLang}`);
